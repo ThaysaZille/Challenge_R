@@ -7,7 +7,7 @@ COUNT(r.customer_id) as "Quantidade de Clientes"
 from rental r
 inner join (
   select
-  MIN(rental_date) as "rental_date", rental.customer_id
+  MIN(rental_date) as "rental_date", rental.customer_id /* pegar a data do primeiro filme que o cliente alugou */
     from rental
   group by
   rental.customer_id
@@ -18,4 +18,4 @@ and b.customer_id = r.customer_id)
   date_trunc('month', CAST(r.rental_date as TIMESTAMP))
   order by
    1
-limit 3
+limit 3 /* 3 linhas */
